@@ -14,10 +14,11 @@ export const RestaurantInfo = ({ restaurant = {} }) => {
     photos = [
       'https://i1.adis.ws/i/canon/pro-inside-professional-food-photography-1_46a998f373b44dc583ee52d9448ece04?$media-collection-full-dt$',
     ],
-    address = '100 some random street',
+    address,
     isOpenNow = true,
     rating = 4,
     isClosedTemporarily = true,
+    placeId
   } = restaurant;
 
   
@@ -29,8 +30,8 @@ export const RestaurantInfo = ({ restaurant = {} }) => {
         <Text variant="label">{name}</Text>
         <Section>
           <Rating>
-            {ratingArray.map((i) => (
-              <SvgXml key={i} xml={star} width={20} height={20} />
+            {ratingArray.map((_, i) => (
+              <SvgXml key={`star-${placeId}-${i}`} xml={star} width={20} height={20} />
             ))}
           </Rating>
           <SectionEnd>
