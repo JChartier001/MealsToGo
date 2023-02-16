@@ -3,8 +3,8 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components/native';
 
 import {
-  useFonts as useOswald,
-  Oswald_400Regular,
+	useFonts as useOswald,
+	Oswald_400Regular,
 } from '@expo-google-fonts/oswald';
 import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato';
 
@@ -16,30 +16,30 @@ import { LocationContextProvider } from './src/services/location/location.contex
 import { FavoritesContextProvider } from './src/services/favorites/favorites.context';
 
 export default function App() {
-  const [oswaldLoaded] = useOswald({
-    Oswald_400Regular,
-  });
+	const [oswaldLoaded] = useOswald({
+		Oswald_400Regular,
+	});
 
-  const [latoLoaded] = useLato({
-    Lato_400Regular,
-  });
+	const [latoLoaded] = useLato({
+		Lato_400Regular,
+	});
 
-  if (!oswaldLoaded || !latoLoaded) {
-    return null;
-  }
+	if (!oswaldLoaded || !latoLoaded) {
+		return null;
+	}
 
-  return (
-    <>
-      <ThemeProvider theme={theme}>
-        <FavoritesContextProvider>
-          <LocationContextProvider>
-            <RestaurantsContextProvider>
-              <Navigation />
-            </RestaurantsContextProvider>
-          </LocationContextProvider>
-        </FavoritesContextProvider>
-      </ThemeProvider>
-      <ExpoStatusBar style='auto' />
-    </>
-  );
+	return (
+		<>
+			<ThemeProvider theme={theme}>
+				<FavoritesContextProvider>
+					<LocationContextProvider>
+						<RestaurantsContextProvider>
+							<Navigation />
+						</RestaurantsContextProvider>
+					</LocationContextProvider>
+				</FavoritesContextProvider>
+			</ThemeProvider>
+			<ExpoStatusBar style='auto' />
+		</>
+	);
 }

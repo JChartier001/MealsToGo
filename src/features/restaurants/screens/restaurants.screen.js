@@ -12,59 +12,59 @@ import { FavoritesContext } from '../../../services/favorites/favorites.context'
 import { Search } from '../components/search.component';
 
 const RestaurantList = styled(FlatList).attrs({
-  contentContainerStyle: {
-    padding: 16,
-  },
+	contentContainerStyle: {
+		padding: 16,
+	},
 })``;
 
 const Loading = styled(ActivityIndicator)`
-  margin-left: -25px;
+	margin-left: -25px;
 `;
 
 const LoadingContainer = styled.View`
-  position: absolute;
-  top: 50%;
-  left: 50%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
 `;
 
 export const RestaurantsScreen = ({ navigation }) => {
-  const { isLoading, error, restaurants } = useContext(RestaurantsContext);
-  const [isToggled, setIsToggled] = useState(false);
-  const { favorites } = useContext(FavoritesContext);
+	const { isLoading, error, restaurants } = useContext(RestaurantsContext);
+	const [isToggled, setIsToggled] = useState(false);
+	const { favorites } = useContext(FavoritesContext);
 
-  return (
-    <ViewArea>
-      {isLoading && (
-        <LoadingContainer>
-          <Loading size={50} animating={true} color={MD2Colors.blue300} />
-        </LoadingContainer>
-      )}
-      <Search
-        isFavoritesToggled={isToggled}
-        onFavoritesToggle={() => setIsToggled(!isToggled)}
-      />
-      {isToggled && (
-        <FavoritesBar favorites={favorites} onNavigate={navigation.navigate} />
-      )}
-      <RestaurantList
-        data={restaurants}
-        renderItem={({ item }) => {
-          return (
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate('RestaurantDetail', {
-                  restaurant: item,
-                })
-              }
-            >
-              <Spacer position='bottom' size='large'>
-                <RestaurantInfo restaurant={item} />
-              </Spacer>
-            </TouchableOpacity>
-          );
-        }}
-        keyExtractor={(item) => item.name}
-      />
-    </ViewArea>
-  );
+	return (
+		<ViewArea>
+			{isLoading && (
+				<LoadingContainer>
+					<Loading size={50} animating={true} color={MD2Colors.blue300} />
+				</LoadingContainer>
+			)}
+			<Search
+				isFavoritesToggled={isToggled}
+				onFavoritesToggle={() => setIsToggled(!isToggled)}
+			/>
+			{isToggled && (
+				<FavoritesBar favorites={favorites} onNavigate={navigation.navigate} />
+			)}
+			<RestaurantList
+				data={restaurants}
+				renderItem={({ item }) => {
+					return (
+						<TouchableOpacity
+							onPress={() =>
+								navigation.navigate('RestaurantDetail', {
+									restaurant: item,
+								})
+							}
+						>
+							<Spacer position='bottom' size='large'>
+								<RestaurantInfo restaurant={item} />
+							</Spacer>
+						</TouchableOpacity>
+					);
+				}}
+				keyExtractor={item => item.name}
+			/>
+		</ViewArea>
+	);
 };
