@@ -3,6 +3,7 @@ import { SvgXml } from "react-native-svg";
 import { RestaurantCard, RestaurantCardCover, Icon, Address, Rating, Info, Section, SectionEnd } from "./restaurant-info.styles";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { Text } from "../../../components/typography/text.component";
+import { Favorite } from "../../../components/favorites/favorite.component";
 
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
@@ -25,6 +26,7 @@ export const RestaurantInfo = ({ restaurant = {} }) => {
   const ratingArray = Array.from(new Array(Math.floor(rating)));
   return (
     <RestaurantCard elevation={5}>
+      <Favorite restaurant={restaurant} />
       <RestaurantCardCover source={{ uri: photos[0] }} />
       <Info>
         <Text variant="label">{name}</Text>
